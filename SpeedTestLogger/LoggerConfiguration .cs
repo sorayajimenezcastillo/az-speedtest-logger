@@ -10,9 +10,11 @@ public class LoggerConfiguration
     public readonly string UserId;
     public readonly int LoggerId;
     public readonly RegionInfo LoggerLocation;
+    public readonly Uri ApiUrl;
 
     public LoggerConfiguration()
     {
+
         var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json");
@@ -23,6 +25,7 @@ public class LoggerConfiguration
         UserId = configuration["userId"];
         LoggerId = int.Parse(configuration["loggerId"]);
         LoggerLocation = new RegionInfo(configuration["loggerLocationCountryCode"]);
+        ApiUrl = new Uri(configuration["speedTestApiUrl"]);
 
         Console.WriteLine("Logger located in {0}", LoggerLocation.EnglishName);
     }
